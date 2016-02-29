@@ -2,18 +2,38 @@
 <msg>
     <ServerMsg>
         <!--订单标识-->
-       <NAME>YKJ</NAME>
-        <!--交易完成时访问url-->
-        <TRADE_FINISHED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_FINISHED_URL>
+        <NAME>YKJ</NAME>
+        <!--交易创建时访问url-->
+        <WAIT_BUYER_PAY_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</WAIT_BUYER_PAY_URL>
+        <!--交易关闭时访问url-->
+        <TRADE_CLOSED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_CLOSED_URL>
         <!--交易成功时访问url-->
         <TRADE_SUCCESS_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_SUCCESS_URL>
+        <!--等待卖家收款时访问url-->
+        <TRADE_PENDING_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_PENDING_URL>
+        <!--全额退款时访问url-->
+        <REFUND_SUCCESS_FULL_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</REFUND_SUCCESS_FULL_URL>
+        <!--部分退款时访问url-->
+        <REFUND_SUCCESS_PART_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</REFUND_SUCCESS_PART_URL>
+        <!--交易完成时访问url-->
+        <TRADE_FINISHED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_FINISHED_URL>
     </ServerMsg>
     <ServerMsg>
         <!--订单标识-->
         <NAME>ZFC</NAME>
-        <!--交易完成时访问url-->
-        <TRADE_FINISHED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_FINISHED_URL>
+        <!--交易创建时访问url-->
+        <WAIT_BUYER_PAY_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</WAIT_BUYER_PAY_URL>
+        <!--交易关闭时访问url-->
+        <TRADE_CLOSED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_CLOSED_URL>
         <!--交易成功时访问url-->
         <TRADE_SUCCESS_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_SUCCESS_URL>
+        <!--等待卖家收款时访问url-->
+        <TRADE_PENDING_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_PENDING_URL>
+        <!--全额退款时访问url-->
+        <REFUND_SUCCESS_FULL_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</REFUND_SUCCESS_FULL_URL>
+        <!--部分退款时访问url-->
+        <REFUND_SUCCESS_PART_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</REFUND_SUCCESS_PART_URL>
+        <!--交易完成时访问url-->
+        <TRADE_FINISHED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_FINISHED_URL>
     </ServerMsg>
 </msg>

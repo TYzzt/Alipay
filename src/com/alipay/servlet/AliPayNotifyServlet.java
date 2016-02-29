@@ -63,21 +63,20 @@ public class AliPayNotifyServlet extends HttpServlet {
         //交易状态
         String trade_status = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"),"UTF-8");
 
+        //退款状态
+        String refund_status = new String(request.getParameter("refund_status").getBytes("ISO-8859-1"),"UTF-8");
+
         List<AliPayOuterConfig> configList = XMLReader.loadconfiglist();
         PrintWriter out = response.getWriter();
         if(AlipayNotify.verify(params)){//验证成功
             //判断订单号是哪个项目
             AliPayOuterConfig config = null;
-            System.out.println("notifzzzzzzzzzzzzzzz");
-            System.out.println(configList.get(0).getNAME());
-            System.out.println(configList.get(1).getNAME());
             for(AliPayOuterConfig temp : configList){
                if(out_trade_no.startsWith(temp.getNAME())){
                    config = temp;
                    break;
                }
             }
-            System.out.println(config.getNAME());
             if(config == null){
                 AlipayCore.logResult("订单成功且未处理:"+out_trade_no);
                 out.println("success");
@@ -85,14 +84,24 @@ public class AliPayNotifyServlet extends HttpServlet {
                 out.close();
                 return;
             }
-            System.out.println(config.getNAME());
-            if(trade_status.equals("TRADE_FINISHED")){
-                String u = config.getTRADE_FINISHED_URL()+"?out_trade_no="+out_trade_no;
-                AliPayNotifyServlet.openUrl(u,response);
+            /**
+             * 下面通知情况根据公司业务自行调整
+             */
+            if(trade_status.equals("WAIT_BUYER_PAY")){  //交易创建，等待买家付款。
 
-            } else if (trade_status.equals("TRADE_SUCCESS")){
-                String u = config.getTRADE_SUCCESS_URL()+"?out_trade_no="+out_trade_no;
-                AliPayNotifyServlet.openUrl(u,response);
+            } else if (trade_status.equals("TRADE_CLOSED")) {   //在指定时间段内未支付时关闭的交易；在交易完成全额退款成功时关闭的交易。
+
+            } else if (trade_status.equals("TRADE_SUCCESS")) {   //交易成功，且可对该交易做操作，如：多级分润、退款等。
+                String u = config.getTRADE_SUCCESS_URL() + "?out_trade_no=" + out_trade_no;
+                AliPayNotifyServlet.openUrl(u, response);
+            } else if (trade_status.equals("TRADE_PENDING")) {   //等待卖家收款（买家付款后，如果卖家账号被冻结）。
+
+            } else if (trade_status.equals("TRADE_CLOSED") && refund_status.equals("REFUND_SUCCESS")) {  //全额退款情况
+
+            } else if (trade_status.equals("TRADE_CLOSED") && refund_status.equals("REFUND_SUCCESS")) {  //非全额退款情况
+
+            } else if (trade_status.equals("TRADE_FINISHED")) {     //交易成功且结束，即不可再做任何操作。
+
             }
 
 
