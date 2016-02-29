@@ -7,14 +7,16 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by ZhaoTao on 2016/2/29.
  */
 public class XMLReader {
     private static String filename = "aliPayOuterConfig.xml";
-    private static AliPayOuterConfig config;
+    private static List<AliPayOuterConfig> configList;
 
     /**
      * 从配置文件中读取参数并保存到Config类中,
@@ -25,21 +27,29 @@ public class XMLReader {
      * @return
      */
 
-    public static AliPayOuterConfig loadconfig() {
-        if (config == null)
-            config = getConfig();
-        return config;
+//    public static AliPayOuterConfig loadconfig() {
+//        if (config == null)
+//            config = getConfig();
+//        return config;
+//    }
+
+    public static List<AliPayOuterConfig> loadconfiglist() {
+        if (configList == null)
+            configList = getConfig();
+        return configList;
     }
 
-    private static AliPayOuterConfig getConfig() {
-        AliPayOuterConfig cf = new AliPayOuterConfig();
+    private static List<AliPayOuterConfig> getConfig() {
+        AliPayOuterConfig cf;
+        List<AliPayOuterConfig> list = new ArrayList<>();
+
         try{
             filename = AlipayConfig.class.getResource("") + filename;
             filename = filename.substring(6);
             File f = new File(filename);
             if (!f.exists()) {
                 //AlipayCore.logResult("Error : Config file doesn't exist!");
-                System.out.println("error111");
+                System.out.println("error");
                 System.exit(1);
             }
             SAXReader reader = new SAXReader();
@@ -48,17 +58,20 @@ public class XMLReader {
             Element root = doc.getRootElement();
             Element data;
             Iterator<?> itr = root.elementIterator("ServerMsg");
-            data = (Element) itr.next();
-
-            cf.setTRADE_FINISHED_URL(data.elementText("TRADE_FINISHED_URL").trim());
-            cf.setTRADE_SUCCESS_URL(data.elementText("TRADE_SUCCESS_URL").trim());
+            while(itr.hasNext()){
+                data = (Element) itr.next();
+                cf = new AliPayOuterConfig();
+                cf.setNAME(data.elementText("NAME").trim());
+                cf.setTRADE_FINISHED_URL(data.elementText("TRADE_FINISHED_URL").trim());
+                cf.setTRADE_SUCCESS_URL(data.elementText("TRADE_SUCCESS_URL").trim());
+                list.add(cf);
+            }
         }catch (Exception ex){
             AlipayCore.logResult("Error : " + ex.toString());
         }
-        return cf;
+        return list;
     }
-
     public static void main(String[] args) {
-        XMLReader.getConfig();
+        System.out.println(XMLReader.loadconfiglist().get(1).getNAME());
     }
 }

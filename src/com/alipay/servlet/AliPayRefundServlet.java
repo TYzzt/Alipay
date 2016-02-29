@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Created by Buce on 2016/2/29.
  */
-@WebServlet(name="AliPaySubmitServlet",urlPatterns="/aliPayRefund")
+@WebServlet(name="AliPayRefundServlet",urlPatterns="/aliPayRefund")
 public class AliPayRefundServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);

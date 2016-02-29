@@ -8,8 +8,17 @@ package com.alipay.util.configUtil;
  * 返回配置
  */
 public class AliPayOuterConfig {
+   public String NAME;
    public String TRADE_FINISHED_URL;
    public String TRADE_SUCCESS_URL;
+
+    public String getNAME() {
+        return NAME;
+    }
+
+    public void setNAME(String NAME) {
+        this.NAME = NAME;
+    }
 
     public String getTRADE_FINISHED_URL() {
         return TRADE_FINISHED_URL;

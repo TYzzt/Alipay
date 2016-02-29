@@ -2,7 +2,7 @@
 <msg>
     <ServerMsg>
         <!--订单标识-->
-       <name>YKJ</name>
+       <NAME>YKJ</NAME>
         <!--交易完成时访问url-->
         <TRADE_FINISHED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_FINISHED_URL>
         <!--交易成功时访问url-->
@@ -10,7 +10,7 @@
     </ServerMsg>
     <ServerMsg>
         <!--订单标识-->
-        <name>ZFCG</name>
+        <NAME>ZFC</NAME>
         <!--交易完成时访问url-->
         <TRADE_FINISHED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_FINISHED_URL>
         <!--交易成功时访问url-->

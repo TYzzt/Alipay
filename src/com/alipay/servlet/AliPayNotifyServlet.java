@@ -1,5 +1,6 @@
 package com.alipay.servlet;
 
+import com.alipay.util.AlipayCore;
 import com.alipay.util.AlipayNotify;
 import com.alipay.util.configUtil.AliPayOuterConfig;
 import com.alipay.util.configUtil.XMLReader;
@@ -17,6 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,6 +35,7 @@ public class AliPayNotifyServlet extends HttpServlet {
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取支付宝POST过来反馈信息
+        System.out.println("notifyyyyyyyyyyyyy");
         Map<String,String> params = new HashMap<String,String>();
         Map requestParams = request.getParameterMap();
         for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext();) {
@@ -60,9 +63,29 @@ public class AliPayNotifyServlet extends HttpServlet {
         //交易状态
         String trade_status = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"),"UTF-8");
 
-        AliPayOuterConfig config = XMLReader.loadconfig();
-
+        List<AliPayOuterConfig> configList = XMLReader.loadconfiglist();
+        PrintWriter out = response.getWriter();
         if(AlipayNotify.verify(params)){//验证成功
+            //判断订单号是哪个项目
+            AliPayOuterConfig config = null;
+            System.out.println("notifzzzzzzzzzzzzzzz");
+            System.out.println(configList.get(0).getNAME());
+            System.out.println(configList.get(1).getNAME());
+            for(AliPayOuterConfig temp : configList){
+               if(out_trade_no.startsWith(temp.getNAME())){
+                   config = temp;
+                   break;
+               }
+            }
+            System.out.println(config.getNAME());
+            if(config == null){
+                AlipayCore.logResult("订单成功且未处理:"+out_trade_no);
+                out.println("success");
+                out.flush();
+                out.close();
+                return;
+            }
+            System.out.println(config.getNAME());
             if(trade_status.equals("TRADE_FINISHED")){
                 String u = config.getTRADE_FINISHED_URL()+"?out_trade_no="+out_trade_no;
                 AliPayNotifyServlet.openUrl(u,response);
@@ -71,8 +94,9 @@ public class AliPayNotifyServlet extends HttpServlet {
                 String u = config.getTRADE_SUCCESS_URL()+"?out_trade_no="+out_trade_no;
                 AliPayNotifyServlet.openUrl(u,response);
             }
+
+
         }else{//验证失败
-            PrintWriter out = response.getWriter();
             out.println("fail");
             out.flush();
             out.close();
@@ -90,16 +114,14 @@ public class AliPayNotifyServlet extends HttpServlet {
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             br.close();// 关闭流
             connection.disconnect();// 断开连接
-            out.println("success");	//请不要修改或删除
         } catch (Exception e) {
-            e.printStackTrace();
-            out.println("fail");
+            e.printStackTrace();//// TODO: 2016/2/29 异常处理
             System.out.println("失败!");
         }
+        out.println("success");
         out.flush();
         out.close();
     }
-
 }
 
 
