@@ -25,12 +25,12 @@ public class AlipayConfig {
 	
 	//↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 	// 合作身份者ID，以2088开头由16位纯数字组成的字符串
-	public static String partner = "";
+	public static String partner = "2088011499204831";
 	
 	// 收款支付宝账号，一般情况下收款账号就是签约账号
-	public static String seller_email = "";
+	public static String seller_email = "htykj@greatchn.com.cn";
 	// 商户的私钥
-	public static String key = "";
+	public static String key = "q9w8l57kd9dw5who1ma3t3zmrgqsx089";
 
 	//↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 	
