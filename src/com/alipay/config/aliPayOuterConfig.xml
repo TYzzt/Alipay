@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<msg>
+    <ServerMsg>
+        <!--订单标识-->
+       <name>YKJ</name>
+        <!--交易完成时访问url-->
+        <TRADE_FINISHED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_FINISHED_URL>
+        <!--交易成功时访问url-->
+        <TRADE_SUCCESS_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_SUCCESS_URL>
+    </ServerMsg>
+    <ServerMsg>
+        <!--订单标识-->
+        <name>ZFCG</name>
+        <!--交易完成时访问url-->
+        <TRADE_FINISHED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_FINISHED_URL>
+        <!--交易成功时访问url-->
+        <TRADE_SUCCESS_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_SUCCESS_URL>
+    </ServerMsg>
+</msg>
