@@ -70,6 +70,9 @@ public class AliPayRefundServlet extends HttpServlet {
 
         //建立请求
         String sHtmlText = AlipaySubmit.buildRequest(sParaTemp,"get","确认");
+        System.out.println(sHtmlText);
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html; charset=utf-8");
         PrintWriter out = response.getWriter();
         out.println("<!DOCTYPE HTML>");
         out.println("<HTML>");
