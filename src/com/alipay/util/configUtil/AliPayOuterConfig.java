@@ -8,9 +8,62 @@ package com.alipay.util.configUtil;
  * 返回配置
  */
 public class AliPayOuterConfig {
-   public String NAME;
-   public String TRADE_FINISHED_URL;
-   public String TRADE_SUCCESS_URL;
+//    订单标识
+    public String NAME;
+//    交易完成时访问
+    public String TRADE_FINISHED_URL;
+//    交易成功时访问
+    public String TRADE_SUCCESS_URL;
+//    交易创建时访问
+    public String WAIT_BUYER_PAY_URL;
+//    交易关闭时访问
+    public String TRADE_CLOSED_URL;
+//    等待卖家收款时访问
+    public String TRADE_PENDING_URL;
+//    全额退款时访问
+    public String REFUND_SUCCESS_FULL_URL;
+//    部分退款时访问
+    public String REFUND_SUCCESS_PART_URL;
+
+    public String getTRADE_PENDING_URL() {
+        return TRADE_PENDING_URL;
+    }
+
+    public void setTRADE_PENDING_URL(String TRADE_PENDING_URL) {
+        this.TRADE_PENDING_URL = TRADE_PENDING_URL;
+    }
+
+    public String getWAIT_BUYER_PAY_URL() {
+        return WAIT_BUYER_PAY_URL;
+    }
+
+    public void setWAIT_BUYER_PAY_URL(String WAIT_BUYER_PAY_URL) {
+        this.WAIT_BUYER_PAY_URL = WAIT_BUYER_PAY_URL;
+    }
+
+    public String getTRADE_CLOSED_URL() {
+        return TRADE_CLOSED_URL;
+    }
+
+    public void setTRADE_CLOSED_URL(String TRADE_CLOSED_URL) {
+        this.TRADE_CLOSED_URL = TRADE_CLOSED_URL;
+    }
+
+    public String getREFUND_SUCCESS_FULL_URL() {
+        return REFUND_SUCCESS_FULL_URL;
+    }
+
+    public void setREFUND_SUCCESS_FULL_URL(String REFUND_SUCCESS_FULL_URL) {
+        this.REFUND_SUCCESS_FULL_URL = REFUND_SUCCESS_FULL_URL;
+    }
+
+    public String getREFUND_SUCCESS_PART_URL() {
+        return REFUND_SUCCESS_PART_URL;
+    }
+
+    public void setREFUND_SUCCESS_PART_URL(String REFUND_SUCCESS_PART_URL) {
+        this.REFUND_SUCCESS_PART_URL = REFUND_SUCCESS_PART_URL;
+    }
 
     public String getNAME() {
         return NAME;
