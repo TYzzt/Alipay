@@ -62,16 +62,24 @@ public class XMLReader {
                 data = (Element) itr.next();
                 cf = new AliPayOuterConfig();
                 cf.setNAME(data.elementText("NAME").trim());
-                cf.setTRADE_FINISHED_URL(data.elementText("TRADE_FINISHED_URL").trim());
+                cf.setTRADE_PENDING_URL(data.elementText("TRADE_PENDING_URL").trim());
                 cf.setTRADE_SUCCESS_URL(data.elementText("TRADE_SUCCESS_URL").trim());
+                cf.setREFUND_SUCCESS_PART_URL(data.elementText("REFUND_SUCCESS_PART_URL").trim());
+                cf.setREFUND_SUCCESS_FULL_URL(data.elementText("REFUND_SUCCESS_FULL_URL").trim());
+                cf.setTRADE_CLOSED_URL(data.elementText("TRADE_CLOSED_URL").trim());
+                cf.setTRADE_FINISHED_URL(data.elementText("TRADE_FINISHED_URL").trim());
+                cf.setWAIT_BUYER_PAY_URL(data.elementText("WAIT_BUYER_PAY_URL").trim());
+
                 list.add(cf);
             }
         }catch (Exception ex){
+            ex.printStackTrace();
             AlipayCore.logResult("Error : " + ex.toString());
         }
         return list;
     }
     public static void main(String[] args) {
+        System.out.println(1);
         System.out.println(XMLReader.loadconfiglist().get(1).getNAME());
     }
 }

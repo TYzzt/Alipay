@@ -25,20 +25,20 @@ public class AliPayOuterConfig {
 //    部分退款时访问
     public String REFUND_SUCCESS_PART_URL;
 
-    public String getTRADE_PENDING_URL() {
-        return TRADE_PENDING_URL;
-    }
-
-    public void setTRADE_PENDING_URL(String TRADE_PENDING_URL) {
-        this.TRADE_PENDING_URL = TRADE_PENDING_URL;
-    }
-
     public String getWAIT_BUYER_PAY_URL() {
         return WAIT_BUYER_PAY_URL;
     }
 
     public void setWAIT_BUYER_PAY_URL(String WAIT_BUYER_PAY_URL) {
         this.WAIT_BUYER_PAY_URL = WAIT_BUYER_PAY_URL;
+    }
+
+    public String getTRADE_PENDING_URL() {
+        return TRADE_PENDING_URL;
+    }
+
+    public void setTRADE_PENDING_URL(String TRADE_PENDING_URL) {
+        this.TRADE_PENDING_URL = TRADE_PENDING_URL;
     }
 
     public String getTRADE_CLOSED_URL() {

@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,8 +33,16 @@ public class AliPayRefundServlet extends HttpServlet {
         //需http://格式的完整路径，不允许加?id=123这类自定义参数
         //必填
         //退款当天日期
-        String refund_date = new String(request.getParameter("WIDrefund_date").getBytes("ISO-8859-1"),"UTF-8");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String refund_date = "";
+        try {
+            refund_date = sdf.format(date);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         //必填，格式：年[4位]-月[2位]-日[2位] 小时[2位 24小时制]:分[2位]:秒[2位]，如：2007-10-01 13:13:13
+
         //批次号
         String batch_no = new String(request.getParameter("WIDbatch_no").getBytes("ISO-8859-1"),"UTF-8");
         //必填，格式：当天日期[8位]+序列号[3至24位]，如：201008010000001
@@ -40,7 +51,7 @@ public class AliPayRefundServlet extends HttpServlet {
         //必填，参数detail_data的值中，“#”字符出现的数量加1，最大支持1000笔（即“#”字符出现的数量999个）
         //退款详细数据
         String detail_data = new String(request.getParameter("WIDdetail_data").getBytes("ISO-8859-1"),"UTF-8");
-        //必填，具体格式请参见接口技术文档
+        //必填，具体格式请参见接口技术文档  格式:  原付款支付宝交易号^退款总金额^退款理由；多笔交易用#号分割
 
 
         //////////////////////////////////////////////////////////////////////////////////

@@ -160,7 +160,7 @@ ul,ol{
 				<li class="last">3、确认完成</li>
             </ol>
         </div>
-        <form name=alipayment action=aliPaySubmit method=post target="_blank">
+        <form name=alipayment action=aliPayRefund method=post target="_blank">
             <div id="body" style="clear:left">
                 <dl class="content">
 					<dt>卖家支付宝帐户：</dt>
