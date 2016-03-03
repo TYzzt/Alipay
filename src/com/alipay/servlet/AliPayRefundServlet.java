@@ -19,6 +19,16 @@ import java.util.Map;
 /**
  * Created by Buce on 2016/2/29.
  */
+
+/**
+ * 退款订单提交
+ *
+ * param WIDbatch_no     批次号                       必填
+ * param WIDbatch_num    退款笔数                     必填,格式:  原付款支付宝交易号^退款总金额^退款理由；多笔交易用#号分割
+ *                                                         eg: 2016030321001004730279794398^102.1^买错了#2016030321001004730279794100^10.1^哈哈
+ * param WIDdetail_data  退款详细数据                 必填
+ *
+ */
 @WebServlet(name="AliPayRefundServlet",urlPatterns="/aliPayRefund")
 public class AliPayRefundServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,8 +61,8 @@ public class AliPayRefundServlet extends HttpServlet {
         //必填，参数detail_data的值中，“#”字符出现的数量加1，最大支持1000笔（即“#”字符出现的数量999个）
         //退款详细数据
         String detail_data = new String(request.getParameter("WIDdetail_data").getBytes("ISO-8859-1"),"UTF-8");
-        //必填，具体格式请参见接口技术文档  格式:  原付款支付宝交易号^退款总金额^退款理由；多笔交易用#号分割
-
+        //必填，具体格式请参见接口技术文档 ####格式:  原付款支付宝交易号^退款总金额^退款理由；多笔交易用#号分割
+        // eg: 2016030321001004730279794398^102.1^买错了#2016030321001004730279794100^10.1^哈哈
 
         //////////////////////////////////////////////////////////////////////////////////
 

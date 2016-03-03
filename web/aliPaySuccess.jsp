@@ -11,6 +11,6 @@
     <title>支付成功</title>
 </head>
 <body>
-    success
+    恭喜支付成功!
 </body>
 </html>

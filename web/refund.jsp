@@ -163,20 +163,7 @@ ul,ol{
         <form name=alipayment action=aliPayRefund method=post target="_blank">
             <div id="body" style="clear:left">
                 <dl class="content">
-					<dt>卖家支付宝帐户：</dt>
-					<dd>
-						<span class="null-star">*</span>
-						<input size="30" name="WIDseller_email" />
-						<span>必填
-</span>
-					</dd>
-					<dt>退款当天日期：</dt>
-					<dd>
-						<span class="null-star">*</span>
-						<input size="30" name="WIDrefund_date" />
-						<span>必填，格式：年[4位]-月[2位]-日[2位] 小时[2位 24小时制]:分[2位]:秒[2位]，如：2007-10-01 13:13:13
-</span>
-					</dd>
+
 					<dt>批次号：</dt>
 					<dd>
 						<span class="null-star">*</span>

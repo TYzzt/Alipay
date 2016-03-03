@@ -11,6 +11,6 @@
     <title>支付失败</title>
 </head>
 <body>
-fault
+    支付失败!
 </body>
 </html>
