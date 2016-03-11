@@ -3,6 +3,7 @@ package com.alipay.servlet;
 import com.alipay.util.AlipayCore;
 import com.alipay.util.AlipayNotify;
 import com.alipay.util.configUtil.AliPayOuterConfig;
+import com.alipay.util.configUtil.DES;
 import com.alipay.util.configUtil.XMLReader;
 
 import javax.servlet.ServletException;
@@ -91,7 +92,12 @@ public class AliPayNotifyServlet extends HttpServlet {
              * 下面通知情况根据公司业务自行调整
              */
             String u = ""; //交易成功后访问的url
-            String parm = "?out_trade_no="+out_trade_no+"&trade_status="+trade_status+"&trade_no="+trade_no;//url参数
+            String parm = null;//url参数
+            try {
+                parm = "?out_trade_no="+ DES.encrypt(out_trade_no)+"&trade_status="+trade_status+"&trade_no="+trade_no;
+            } catch (Exception e) {
+                parm = "?out_trade_no="+ out_trade_no+"&trade_status="+trade_status+"&trade_no="+trade_no;
+            }
             if(trade_status.equals("WAIT_BUYER_PAY")){  //交易创建，等待买家付款。
                 u = config.getWAIT_BUYER_PAY_URL() + parm;
             } else if (trade_status.equals("TRADE_CLOSED")) {   //在指定时间段内未支付时关闭的交易；在交易完成全额退款成功时关闭的交易。

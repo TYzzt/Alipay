@@ -1,4 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
+
+<!--URL返回时参数: 订单号out_trade_no(DES加密);支付宝交易号trade_no;订单状态trade_status-->
 <msg>
     <ServerMsg>
         <!--订单标识   important-->
