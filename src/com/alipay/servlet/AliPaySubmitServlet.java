@@ -2,6 +2,8 @@ package com.alipay.servlet;
 
 import com.alipay.config.AlipayConfig;
 import com.alipay.util.AlipaySubmit;
+import com.alipay.util.configUtil.AliPayOuterConfig;
+import com.alipay.util.configUtil.XMLReader;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,6 +34,7 @@ import java.util.Map;
 public class AliPaySubmitServlet extends HttpServlet{
     //支付类型
     String payment_type = "1";
+
     //必填，不能修改
     //服务器异步通知页面路径
     String notify_url = "http://zhaotaotest.tunnel.qydev.com/AliPay/aliPayNotify";
@@ -71,6 +75,14 @@ public class AliPaySubmitServlet extends HttpServlet{
         String exter_invoke_ip = "";
         //非局域网的外网IP地址，如：221.0.0.1
 
+
+        List<AliPayOuterConfig> configList = XMLReader.loadconfiglist();
+        for(AliPayOuterConfig config:configList){
+            if(out_trade_no.startsWith(config.getNAME())){
+                return_url = config.getRETURN_URL();
+                break;
+            }
+        }
 
         //////////////////////////////////////////////////////////////////////////////////
 

@@ -45,7 +45,7 @@ public class XMLReader {
 
         try{
             filename = AlipayConfig.class.getResource("") + filename;
-            filename = filename.substring(6);
+            filename = filename.substring(6).replace("%20"," ");
             File f = new File(filename);
             if (!f.exists()) {
                 //AlipayCore.logResult("Error : Config file doesn't exist!");
@@ -69,7 +69,7 @@ public class XMLReader {
                 cf.setTRADE_CLOSED_URL(data.elementText("TRADE_CLOSED_URL").trim());
                 cf.setTRADE_FINISHED_URL(data.elementText("TRADE_FINISHED_URL").trim());
                 cf.setWAIT_BUYER_PAY_URL(data.elementText("WAIT_BUYER_PAY_URL").trim());
-
+                cf.setRETURN_URL(data.elementText("RETURN_URL").trim());
                 list.add(cf);
             }
         }catch (Exception ex){

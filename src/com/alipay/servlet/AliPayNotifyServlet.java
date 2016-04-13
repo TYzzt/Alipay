@@ -94,7 +94,7 @@ public class AliPayNotifyServlet extends HttpServlet {
             String u = ""; //交易成功后访问的url
             String parm = null;//url参数
             try {
-                parm = "?out_trade_no="+ DES.encrypt(out_trade_no)+"&trade_status="+trade_status+"&trade_no="+trade_no;
+                parm = "?out_trade_no="+ DES.decrypt(out_trade_no)+"&trade_status="+trade_status+"&trade_no="+trade_no;
             } catch (Exception e) {
                 parm = "?out_trade_no="+ out_trade_no+"&trade_status="+trade_status+"&trade_no="+trade_no;
             }

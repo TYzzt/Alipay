@@ -9,21 +9,30 @@ package com.alipay.util.configUtil;
  */
 public class AliPayOuterConfig {
 //    订单标识
-    public String NAME;
+private String NAME;
 //    交易完成时访问
-    public String TRADE_FINISHED_URL;
+private String TRADE_FINISHED_URL;
 //    交易成功时访问
-    public String TRADE_SUCCESS_URL;
+private String TRADE_SUCCESS_URL;
 //    交易创建时访问
-    public String WAIT_BUYER_PAY_URL;
+private String WAIT_BUYER_PAY_URL;
 //    交易关闭时访问
-    public String TRADE_CLOSED_URL;
+private String TRADE_CLOSED_URL;
 //    等待卖家收款时访问
-    public String TRADE_PENDING_URL;
+private String TRADE_PENDING_URL;
 //    全额退款时访问
-    public String REFUND_SUCCESS_FULL_URL;
+private String REFUND_SUCCESS_FULL_URL;
 //    部分退款时访问
-    public String REFUND_SUCCESS_PART_URL;
+private String REFUND_SUCCESS_PART_URL;
+//    页面跳转同步通知页面路径
+private String RETURN_URL;
+    public String getRETURN_URL() {
+        return RETURN_URL;
+    }
+
+    public void setRETURN_URL(String RETURN_URL) {
+        this.RETURN_URL = RETURN_URL;
+    }
 
     public String getWAIT_BUYER_PAY_URL() {
         return WAIT_BUYER_PAY_URL;

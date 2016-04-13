@@ -2,15 +2,15 @@
 
 <!--URL返回时参数: 订单号out_trade_no(DES加密);支付宝交易号trade_no;订单状态trade_status-->
 <msg>
-    <ServerMsg>
+    <ServerMsg> //cstraing
         <!--订单标识   important-->
-        <NAME>YKJ</NAME>
+        <NAME>T</NAME>
         <!--交易创建时访问url-->
-        <WAIT_BUYER_PAY_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</WAIT_BUYER_PAY_URL>
+        <WAIT_BUYER_PAY_URL>0</WAIT_BUYER_PAY_URL>
         <!--交易关闭时访问url-->
-        <TRADE_CLOSED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_CLOSED_URL>
+        <TRADE_CLOSED_URL>0</TRADE_CLOSED_URL>
         <!--交易成功时访问url    important-->
-        <TRADE_SUCCESS_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_SUCCESS_URL>
+        <TRADE_SUCCESS_URL>http://zhaotaotest.tunnel.qydev.com/cstraining/orderAction/tradeSuccess</TRADE_SUCCESS_URL>
         <!--等待卖家收款时访问url-->
         <TRADE_PENDING_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_PENDING_URL>
         <!--全额退款时访问url    important-->
@@ -19,6 +19,8 @@
         <REFUND_SUCCESS_PART_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</REFUND_SUCCESS_PART_URL>
         <!--交易完成时访问url    important-->
         <TRADE_FINISHED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_FINISHED_URL>
+        <!--页面跳转同步通知页面路径  important-->
+        <RETURN_URL>http://zhaotaotest.tunnel.qydev.com/cstraining/orderAction/test</RETURN_URL>
     </ServerMsg>
     <ServerMsg>
         <!--订单标识-->
@@ -37,5 +39,13 @@
         <REFUND_SUCCESS_PART_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</REFUND_SUCCESS_PART_URL>
         <!--交易完成时访问url-->
         <TRADE_FINISHED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_FINISHED_URL>
+        <!--页面跳转同步通知页面路径-->
+        <RETURN_URL>http://zhaotaotest.tunnel.qydev.com/cstraining/orderAction/test</RETURN_URL>
     </ServerMsg>
 </msg>
+
+<!--
+交易状态TRADE_SUCCESS的通知触发条件是商户签约的产品支持退款功能的前提下，买家付款成功；
+交易状态TRADE_FINISHED的通知触发条件是商户签约的产品不支持退款功能的前提下，买家付款成功；或者，商户签约的产品支持退款功能的前提下，交易已经成功并且已经超过可退款期限；
+TRADE_CLOSED在指定时间段内未支付时关闭的交易,或在交易完成全额退款成功时关闭的交易。
+-->
