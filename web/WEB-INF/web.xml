@@ -3,4 +3,41 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-</web-app>
+
+    <servlet>
+        <servlet-name>Servlet1</servlet-name>
+        <servlet-class>com.alipay.servlet.AliPayNotifyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Servlet1</servlet-name>
+        <url-pattern>/aliPayNotify</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Servlet2</servlet-name>
+        <servlet-class>com.alipay.servlet.AliPayRefundServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Servlet2</servlet-name>
+        <url-pattern>/aliPayRefund</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Servlet3</servlet-name>
+        <servlet-class>com.alipay.servlet.AliPayReturnServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Servlet3</servlet-name>
+        <url-pattern>/aliPayReturn</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Servlet4</servlet-name>
+        <servlet-class>com.alipay.servlet.AliPaySubmitServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Servlet4</servlet-name>
+        <url-pattern>/aliPaySubmit</url-pattern>
+    </servlet-mapping>
+
+    </web-app>

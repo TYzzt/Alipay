@@ -7,8 +7,8 @@
         <NAME>T</NAME>
         <!--交易创建时访问url-->
         <WAIT_BUYER_PAY_URL>0</WAIT_BUYER_PAY_URL>
-        <!--交易关闭时访问url-->
-        <TRADE_CLOSED_URL>0</TRADE_CLOSED_URL>
+        <!--交易关闭时访问url    important-->
+        <TRADE_CLOSED_URL>http://zhaotaotest.tunnel.qydev.com/cstraining/orderAction/tradeClose</TRADE_CLOSED_URL>
         <!--交易成功时访问url    important-->
         <TRADE_SUCCESS_URL>http://zhaotaotest.tunnel.qydev.com/cstraining/orderAction/tradeSuccess</TRADE_SUCCESS_URL>
         <!--等待卖家收款时访问url-->
@@ -20,7 +20,7 @@
         <!--交易完成时访问url    important-->
         <TRADE_FINISHED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_FINISHED_URL>
         <!--页面跳转同步通知页面路径  important-->
-        <RETURN_URL>http://zhaotaotest.tunnel.qydev.com/cstraining/orderAction/test</RETURN_URL>
+        <RETURN_URL>http://zhaotaotest.tunnel.qydev.com/cstraining/orderAction/toNotify</RETURN_URL>
     </ServerMsg>
     <ServerMsg>
         <!--订单标识-->

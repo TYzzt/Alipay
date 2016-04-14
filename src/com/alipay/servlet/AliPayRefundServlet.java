@@ -38,7 +38,7 @@ public class AliPayRefundServlet extends HttpServlet {
         ////////////////////////////////////请求参数//////////////////////////////////////
 
         //服务器异步通知页面路径
-        String notify_url = "http://zhaotaotest.tunnel.qydev.com/AliPay/aliPayNotify";
+        String notify_url = AlipayConfig.notify_url;
         //需http://格式的完整路径，不能加?id=123这类自定义参数
         //需http://格式的完整路径，不允许加?id=123这类自定义参数
         //必填

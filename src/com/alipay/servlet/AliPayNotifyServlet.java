@@ -11,10 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
@@ -94,7 +91,7 @@ public class AliPayNotifyServlet extends HttpServlet {
             String u = ""; //交易成功后访问的url
             String parm = null;//url参数
             try {
-                parm = "?out_trade_no="+ DES.decrypt(out_trade_no)+"&trade_status="+trade_status+"&trade_no="+trade_no;
+                parm = "?out_trade_no="+ DES.encrypt(out_trade_no)+"&trade_status="+trade_status+"&trade_no="+trade_no;
             } catch (Exception e) {
                 parm = "?out_trade_no="+ out_trade_no+"&trade_status="+trade_status+"&trade_no="+trade_no;
             }
@@ -115,8 +112,16 @@ public class AliPayNotifyServlet extends HttpServlet {
             }else{
                 //未知的状态处理
             }
-            AliPayNotifyServlet.openUrl(u, response);
+            String state = openUrl(u, null);
+            System.out.println("state:"+state);
+            if(state.equals("success")){
+                out.println("success");
+            }else{
+                out.println("fail");
+            }
 
+            out.flush();
+            out.close();
         }else{//验证失败
             out.println("fail");
             out.flush();
@@ -125,23 +130,62 @@ public class AliPayNotifyServlet extends HttpServlet {
 
     }
 
-    public static void openUrl(String u,HttpServletResponse response) throws IOException {
-        PrintWriter out = response.getWriter();
-        try {
-            URL url = new URL(u);    // 把字符串转换为URL请求地址
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();// 打开连接
+
+    public  String openUrl(String u,String json) throws IOException{
+        URL url = new URL(u);    // 把字符串转换为URL请求地址
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();// 打开连接
+
+
+        if(null!=json){
+//        	connection.setRequestMethod("POST");
+//        	connection.setRequestProperty("Content-Type", "application/x-javascript; charset="+ "UTF-8");
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
+            connection.setUseCaches(false);
             connection.connect();// 连接会话
-            // 获取输入流
-            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            br.close();// 关闭流
-            connection.disconnect();// 断开连接
-        } catch (Exception e) {
-            e.printStackTrace();//// TODO: 2016/2/29 异常处理
-            System.out.println("失败!");
+            OutputStream os = connection.getOutputStream();
+            OutputStreamWriter osw = new OutputStreamWriter(os);
+            osw.write(json);
+            osw.flush();
+            osw.close();
+        }else{
+            connection.connect();// 连接会话
         }
-        out.println("success");
-        out.flush();
-        out.close();
+
+        // 获取输入流
+        int respCode = connection.getResponseCode();
+
+        String temp =null;
+        if (respCode == 200)
+        {
+            temp = ConvertStream2Json(connection.getInputStream());
+        }
+        connection.disconnect();// 断开连接
+        return temp;
+    }
+
+    private String ConvertStream2Json(InputStream inputStream)
+    {
+        String jsonStr = "";
+        // ByteArrayOutputStream相当于内存输出流
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        // 将输入流转移到内存输出流中
+        try
+        {
+            while ((len = inputStream.read(buffer, 0, buffer.length)) != -1)
+            {
+                out.write(buffer, 0, len);
+            }
+            // 将内存流转换为字符串
+            jsonStr = new String(out.toByteArray());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return jsonStr;
     }
 }
 

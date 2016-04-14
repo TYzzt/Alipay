@@ -7,6 +7,8 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import java.security.SecureRandom;
+import java.util.Random;
+
 /**
  * Copyright 2007 GuangZhou Cotel Co. Ltd. 
  * All right reserved.     
@@ -123,4 +125,121 @@ public class DES {
         }
         return hs.toUpperCase();
     }
+
+    /**
+     * 加密
+     * @param data
+     * @param mixKey
+     * @return jiamidata
+     * @throws Exception
+     */
+    public final static String jiami(String data,String mixKey) throws Exception{
+        String key = praseKey(mixKey);
+        return byte2hex(encrypt(data.getBytes(), key
+                .getBytes()));
+    }
+    /**
+     * 解密
+     * @param jiamidata
+     * @param mixKey
+     * @return data
+     * @throws Exception
+     */
+    public final static String jiemi(String data,String mixKey) throws Exception{
+        String key = praseKey(mixKey);
+        return new String(decrypt(hex2byte(data.getBytes()),
+                key.getBytes()),"UTF-8");
+    }
+
+    /**
+     * 生成64位随机串，包含8位key
+     * @return
+     */
+    public final static String createKey(){
+        StringBuffer key = new StringBuffer();
+        StringBuffer mixKey = new StringBuffer();
+        String str="abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
+        Random random=new Random();
+        for(int i=0;i<8;i++){		//生成8位随机串
+            int number=random.nextInt(59);
+            key.append(str.charAt(number));
+        }
+        for(int i=0;i<64;i++){	 //生成64位随机串,插入8位key
+            int number=random.nextInt(59);
+            switch (i) {
+                case 1:
+                    mixKey.append(key.charAt(0));
+                    break;
+                case 3:
+                    mixKey.append(key.charAt(1));
+                    break;
+                case 5:
+                    mixKey.append(key.charAt(2));
+                    break;
+                case 11:
+                    mixKey.append(key.charAt(3));
+                    break;
+                case 13:
+                    mixKey.append(key.charAt(4));
+                    break;
+                case 19:
+                    mixKey.append(key.charAt(5));
+                    break;
+                case 23:
+                    mixKey.append(key.charAt(6));
+                    break;
+                case 29:
+                    mixKey.append(key.charAt(7));
+                    break;
+                default:
+                    mixKey.append(str.charAt(number));
+                    break;
+            }
+
+        }
+        return mixKey.toString();
+    }
+
+    /**
+     * 从mixKey中解析key值
+     * @param mixKey
+     * @return
+     */
+    public static String praseKey(String mixKey){
+        StringBuffer key = new StringBuffer();
+        for(int i=0;i<64;i++){
+            switch (i) {
+                case 1:
+                    key.append(mixKey.charAt(1));
+                    break;
+                case 3:
+                    key.append(mixKey.charAt(3));
+                    break;
+                case 5:
+                    key.append(mixKey.charAt(5));
+                    break;
+                case 11:
+                    key.append(mixKey.charAt(11));
+                    break;
+                case 13:
+                    key.append(mixKey.charAt(13));
+                    break;
+                case 19:
+                    key.append(mixKey.charAt(19));
+                    break;
+                case 23:
+                    key.append(mixKey.charAt(23));
+                    break;
+                case 29:
+                    key.append(mixKey.charAt(29));
+                    break;
+            }
+        }
+        return key.toString();
+    }
+
+    public static void main(String[] args) throws Exception {
+        System.out.println(DES.jiemi("C571573119722729324251CF5F45FE1D012A435E64C01F7D63058F0D226CDC73A785D75365CCD98F79B7724DEA315A55", "7rsl1wnBrX7sPFjGAmYgJAMaRUsYcfSgpLZwCn7heXcUVk2tsMZ55JJ6DVuKUrtN"));
+    }
+
 }  

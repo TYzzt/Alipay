@@ -33,7 +33,8 @@ public class AlipayConfig {
 	public static String key = "q9w8l57kd9dw5who1ma3t3zmrgqsx089";
 	//DES加密KEY
 	public static final String PASSWORD_CRYPT_KEY = "Z2T3BU4CEEHrDooWHCWtfeSx1gqZ0";
-
+	//服务器异步通知页面路径
+	public static final String notify_url ="http://zhaotaotest.tunnel.qydev.com/AliPay_war/aliPayNotify";
 	//↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 

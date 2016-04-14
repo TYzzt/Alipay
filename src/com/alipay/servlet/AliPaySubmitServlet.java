@@ -3,6 +3,7 @@ package com.alipay.servlet;
 import com.alipay.config.AlipayConfig;
 import com.alipay.util.AlipaySubmit;
 import com.alipay.util.configUtil.AliPayOuterConfig;
+import com.alipay.util.configUtil.DES;
 import com.alipay.util.configUtil.XMLReader;
 
 import javax.servlet.ServletException;
@@ -37,34 +38,52 @@ public class AliPaySubmitServlet extends HttpServlet{
 
     //必填，不能修改
     //服务器异步通知页面路径
-    String notify_url = "http://zhaotaotest.tunnel.qydev.com/AliPay/aliPayNotify";
+    String notify_url = AlipayConfig.notify_url;
     //需http://格式的完整路径，不能加?id=123这类自定义参数
 
     //页面跳转同步通知页面路径
-    String return_url = "http://zhaotaotest.tunnel.qydev.com/AliPay/aliPayReturn";
+    String return_url = "http://zhaotaotest.tunnel.qydev.com/AliPay_war/aliPayReturn";
     //需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //商户订单号
-        String out_trade_no = new String(request.getParameter("WIDout_trade_no").getBytes("ISO-8859-1"),"UTF-8");
-        //商户网站订单系统中唯一订单号，必填
+//        //商户订单号
+//        String out_trade_no = new String(request.getParameter("WIDout_trade_no").getBytes("ISO-8859-1"),"UTF-8");
+//        //商户网站订单系统中唯一订单号，必填
+//
+//        //订单名称
+//        String subject = new String(request.getParameter("WIDsubject").getBytes("ISO-8859-1"),"UTF-8");
+//        //必填
+//
+//        //付款金额
+//        String total_fee = new String(request.getParameter("WIDtotal_fee").getBytes("ISO-8859-1"),"UTF-8");
+//        //必填
 
-        //订单名称
-        String subject = new String(request.getParameter("WIDsubject").getBytes("ISO-8859-1"),"UTF-8");
-        //必填
+        //修改参数
+        String parm =  new String((request.getParameter("parm")).getBytes("ISO-8859-1"),"UTF-8");
+        String mixKey = new String((request.getParameter("mixKey")).getBytes("ISO-8859-1"),"UTF-8");
 
-        //付款金额
-        String total_fee = new String(request.getParameter("WIDtotal_fee").getBytes("ISO-8859-1"),"UTF-8");
-        //必填
+        String out_trade_no = null;
+        String subject = null;
+        String total_fee = null;
+        try {
+           String parmTemp = DES.jiemi(parm,mixKey);  //解密
+            String parms[] =  parmTemp.split("\\|");
+            out_trade_no = new String(parms[0].getBytes(),"UTF-8");
+            subject  = parms[1];
+//            subject = string2Unicode(subject);
+            subject = java.net.URLEncoder.encode(subject,"UTF-8");
+            total_fee =new String( parms[2].getBytes(),"UTF-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //订单描述
-
-        String body = new String(request.getParameter("WIDbody").getBytes("ISO-8859-1"),"UTF-8");
+        String body = "";
         //商品展示地址
-        String show_url = new String(request.getParameter("WIDshow_url").getBytes("ISO-8859-1"),"UTF-8");
+        String show_url = "";
         //需以http://开头的完整路径，例如：http://www.商户网址.com/myorder.html
 
         //防钓鱼时间戳
@@ -104,7 +123,7 @@ public class AliPaySubmitServlet extends HttpServlet{
         sParaTemp.put("exter_invoke_ip", exter_invoke_ip);
 
         //建立请求
-        String sHtmlText = AlipaySubmit.buildRequest(sParaTemp,"get","确认");
+        String sHtmlText = AlipaySubmit.buildRequest(sParaTemp,"post","确认");
         PrintWriter out = response.getWriter();
         out.println("<!DOCTYPE HTML>");
         out.println("<HTML>");
@@ -119,5 +138,25 @@ public class AliPaySubmitServlet extends HttpServlet{
         out.flush();
         out.close();
     }
+
+    /**
+     * 字符串转换unicode
+     */
+    public  String string2Unicode(String string) {
+
+        StringBuffer unicode = new StringBuffer();
+
+        for (int i = 0; i < string.length(); i++) {
+
+            // 取出每一个字符
+            char c = string.charAt(i);
+
+            // 转换为unicode
+            unicode.append("\\u" + Integer.toHexString(c));
+        }
+
+        return unicode.toString();
+    }
+
 
 }
