@@ -73,8 +73,7 @@ public class AliPaySubmitServlet extends HttpServlet{
             String parms[] =  parmTemp.split("\\|");
             out_trade_no = new String(parms[0].getBytes(),"UTF-8");
             subject  = parms[1];
-//            subject = string2Unicode(subject);
-            subject = java.net.URLEncoder.encode(subject,"UTF-8");
+
             total_fee =new String( parms[2].getBytes(),"UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,6 +123,7 @@ public class AliPaySubmitServlet extends HttpServlet{
 
         //建立请求
         String sHtmlText = AlipaySubmit.buildRequest(sParaTemp,"post","确认");
+        response.setHeader("Content-type", "text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.println("<!DOCTYPE HTML>");
         out.println("<HTML>");
@@ -137,25 +137,6 @@ public class AliPaySubmitServlet extends HttpServlet{
         out.println("</HTML>");
         out.flush();
         out.close();
-    }
-
-    /**
-     * 字符串转换unicode
-     */
-    public  String string2Unicode(String string) {
-
-        StringBuffer unicode = new StringBuffer();
-
-        for (int i = 0; i < string.length(); i++) {
-
-            // 取出每一个字符
-            char c = string.charAt(i);
-
-            // 转换为unicode
-            unicode.append("\\u" + Integer.toHexString(c));
-        }
-
-        return unicode.toString();
     }
 
 
