@@ -2,9 +2,10 @@ package com.alipay.servlet;
 
 import com.alipay.config.AlipayConfig;
 import com.alipay.util.AlipaySubmit;
+import com.alipay.util.configUtil.AliPayOuterConfig;
+import com.alipay.util.configUtil.XMLReader;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,8 +31,11 @@ import java.util.Map;
  * param WIDdetail_data  退款详细数据                 必填
  *
  */
-@WebServlet(name="AliPayRefundServlet",urlPatterns="/aliPayRefund")
+/*@WebServlet(name="AliPayRefundServlet",urlPatterns="/aliPayRefund")*/
 public class AliPayRefundServlet extends HttpServlet {
+    //xml中的配置
+    List<AliPayOuterConfig> configList = XMLReader.loadconfiglist();
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
     }
@@ -38,7 +43,7 @@ public class AliPayRefundServlet extends HttpServlet {
         ////////////////////////////////////请求参数//////////////////////////////////////
 
         //服务器异步通知页面路径
-        String notify_url = AlipayConfig.notify_url;
+        String notify_url = configList.get(0).getALIPAY_BASIC_URL()+AlipayConfig.notify_url;
         //需http://格式的完整路径，不能加?id=123这类自定义参数
         //需http://格式的完整路径，不允许加?id=123这类自定义参数
         //必填

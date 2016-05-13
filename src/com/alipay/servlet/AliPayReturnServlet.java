@@ -3,7 +3,6 @@ package com.alipay.servlet;
 import com.alipay.util.AlipayNotify;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +20,7 @@ import java.util.Map;
  * 成功:aliPaySuccess.jsp
  * 失败:aliPayFail.jsp
  */
-@WebServlet(name="AliPayReturnServlet",urlPatterns="/aliPayReturn")
+/*@WebServlet(name="AliPayReturnServlet",urlPatterns="/aliPayReturn")*/
 public class AliPayReturnServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);

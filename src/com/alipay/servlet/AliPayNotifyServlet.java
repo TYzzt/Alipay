@@ -7,7 +7,6 @@ import com.alipay.util.configUtil.DES;
 import com.alipay.util.configUtil.XMLReader;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +25,7 @@ import java.util.Map;
 /**
  * 支付宝通知处理
  */
-@WebServlet(name="AliPayNotifyServlet",urlPatterns="/aliPayNotify")
+/*@WebServlet(name="AliPayNotifyServlet",urlPatterns="/aliPayNotify")*/
 public class AliPayNotifyServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);

@@ -7,7 +7,6 @@ import com.alipay.util.configUtil.DES;
 import com.alipay.util.configUtil.XMLReader;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,18 +30,21 @@ import java.util.Map;
  * param WIDshow_url     商品展示地址
  *
  */
-@WebServlet(name="AliPaySubmitServlet",urlPatterns="/aliPaySubmit")
+/*@WebServlet(name="AliPaySubmitServlet",urlPatterns="/aliPaySubmit")*/
 public class AliPaySubmitServlet extends HttpServlet{
+    //xml中的配置
+    List<AliPayOuterConfig> configList = XMLReader.loadconfiglist();
+
     //支付类型
     String payment_type = "1";
 
     //必填，不能修改
     //服务器异步通知页面路径
-    String notify_url = AlipayConfig.notify_url;
+    String notify_url = configList.get(0).getALIPAY_BASIC_URL()+AlipayConfig.notify_url;
     //需http://格式的完整路径，不能加?id=123这类自定义参数
 
     //页面跳转同步通知页面路径
-    String return_url = "http://zhaotaotest.tunnel.qydev.com/AliPay_war/aliPayReturn";
+    String return_url = configList.get(0).getALIPAY_BASIC_URL()+"aliPayReturn";  //弃用，从xml中读取，从下文中修改
     //需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -94,7 +96,7 @@ public class AliPaySubmitServlet extends HttpServlet{
         //非局域网的外网IP地址，如：221.0.0.1
 
 
-        List<AliPayOuterConfig> configList = XMLReader.loadconfiglist();
+
         for(AliPayOuterConfig config:configList){
             if(out_trade_no.startsWith(config.getNAME())){
                 return_url = config.getRETURN_URL();
@@ -128,7 +130,7 @@ public class AliPaySubmitServlet extends HttpServlet{
         out.println("<!DOCTYPE HTML>");
         out.println("<HTML>");
         out.println(" <HEAD>");
-        out.println("<TITLE>A Servlet</TITLE>");
+        out.println("<TITLE>Jump to AliPay...</TITLE>");
         out.println("<meta http-equiv=\"content-type\" " + "content=\"text/html; charset=utf-8\">");
         out.println("</HEAD>");
         out.println("<BODY>");

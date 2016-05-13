@@ -21,15 +21,17 @@
         <TRADE_FINISHED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_FINISHED_URL>
         <!--页面跳转同步通知页面路径  important-->
         <RETURN_URL>http://zhaotaotest.tunnel.qydev.com/cstraining/orderAction/toNotify</RETURN_URL>
+        <!--支付宝项目所在域名  important-->
+        <ALIPAY_BASIC_URL>http://zhaotaotest.tunnel.qydev.com/AliPay_war/</ALIPAY_BASIC_URL>
     </ServerMsg>
     <ServerMsg>
         <!--订单标识-->
-        <NAME>ZFC</NAME>
+        <NAME>ZFC</NAME>    <!--测试   important为必须配置-->
         <!--交易创建时访问url-->
         <WAIT_BUYER_PAY_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</WAIT_BUYER_PAY_URL>
-        <!--交易关闭时访问url-->
+        <!--交易关闭时访问url  important-->
         <TRADE_CLOSED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_CLOSED_URL>
-        <!--交易成功时访问url-->
+        <!--交易成功时访问url  important-->
         <TRADE_SUCCESS_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_SUCCESS_URL>
         <!--等待卖家收款时访问url-->
         <TRADE_PENDING_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_PENDING_URL>
@@ -39,8 +41,10 @@
         <REFUND_SUCCESS_PART_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</REFUND_SUCCESS_PART_URL>
         <!--交易完成时访问url-->
         <TRADE_FINISHED_URL>http://zhaotaotest.tunnel.qydev.com/AliPay/test</TRADE_FINISHED_URL>
-        <!--页面跳转同步通知页面路径-->
+        <!--页面跳转同步通知页面路径  important-->
         <RETURN_URL>http://zhaotaotest.tunnel.qydev.com/cstraining/orderAction/test</RETURN_URL>
+        <!--支付宝项目所在域名  important-->
+        <ALIPAY_BASIC_URL>http://zhaotaotest.tunnel.qydev.com/AliPay_war/</ALIPAY_BASIC_URL>
     </ServerMsg>
 </msg>
 

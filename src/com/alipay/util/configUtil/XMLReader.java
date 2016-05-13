@@ -70,6 +70,7 @@ public class XMLReader {
                 cf.setTRADE_FINISHED_URL(data.elementText("TRADE_FINISHED_URL").trim());
                 cf.setWAIT_BUYER_PAY_URL(data.elementText("WAIT_BUYER_PAY_URL").trim());
                 cf.setRETURN_URL(data.elementText("RETURN_URL").trim());
+                cf.setALIPAY_BASIC_URL(data.elementText("ALIPAY_BASIC_URL").trim());
                 list.add(cf);
             }
         }catch (Exception ex){
@@ -78,8 +79,8 @@ public class XMLReader {
         }
         return list;
     }
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         System.out.println(1);
-        System.out.println(XMLReader.loadconfiglist().get(1).getNAME());
-    }
+        System.out.println(XMLReader.loadconfiglist().get(1).getALIPAY_BASIC_URL());
+    }*/
 }

@@ -26,6 +26,18 @@ private String REFUND_SUCCESS_FULL_URL;
 private String REFUND_SUCCESS_PART_URL;
 //    页面跳转同步通知页面路径
 private String RETURN_URL;
+
+//    支付宝项目所在域名
+private String ALIPAY_BASIC_URL;
+
+    public String getALIPAY_BASIC_URL() {
+        return ALIPAY_BASIC_URL;
+    }
+
+    public void setALIPAY_BASIC_URL(String ALIPAY_BASIC_URL) {
+        this.ALIPAY_BASIC_URL = ALIPAY_BASIC_URL;
+    }
+
     public String getRETURN_URL() {
         return RETURN_URL;
     }
