@@ -1,13 +1,13 @@
-package com.alipay.util;
+package com.alipayo.util;
+
+import com.alipayo.config.AlipayConfig;
+import com.alipayo.sign.MD5;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
-
-import com.alipay.config.AlipayConfig;
-import com.alipay.sign.MD5;
 
 /* *
  *类名：AlipayNotify

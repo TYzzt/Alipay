@@ -1,4 +1,4 @@
-package com.alipay.util.configUtil;
+package com.alipayo.util.configUtil;
 
 /**
  * Created by ZhaoTao on 2016/2/29.

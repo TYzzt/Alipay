@@ -1,10 +1,12 @@
-package com.alipay.servlet;
+package com.alipayo.servlet;
 
-import com.alipay.util.AlipayCore;
-import com.alipay.util.AlipayNotify;
-import com.alipay.util.configUtil.AliPayOuterConfig;
-import com.alipay.util.configUtil.DES;
-import com.alipay.util.configUtil.XMLReader;
+import com.alipay.api.AlipayApiException;
+import com.alipay.api.internal.util.AlipaySignature;
+import com.alipayo.config.AlipayConfig;
+import com.alipayo.util.AlipayCore;
+import com.alipayo.util.configUtil.AliPayOuterConfig;
+import com.alipayo.util.configUtil.DES;
+import com.alipayo.util.configUtil.XMLReader;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,14 +21,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by ZhaoTao on 2016/2/23.
+ * \* Created with IntelliJ IDEA.
+ * \* User: ZhaoTao
+ * \* Date: 2017/2/13
+ * \* Time: 9:40
+ * \* Description:
+ * \
  */
-
-/**
- * 支付宝通知处理
- */
-/*@WebServlet(name="AliPayNotifyServlet",urlPatterns="/aliPayNotify")*/
-public class AliPayNotifyServlet extends HttpServlet {
+public class AliPayWapNotifyServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
     }
@@ -68,14 +70,20 @@ public class AliPayNotifyServlet extends HttpServlet {
         System.out.println("notifyyyyyyyyyyyyy"+out_trade_no+trade_status);
         List<AliPayOuterConfig> configList = XMLReader.loadconfiglist();
         PrintWriter out = response.getWriter();
-        if(AlipayNotify.verify(params)){//验证成功
+        boolean signVerified = false; //调用SDK验证签名
+        try {
+            signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.keyPublic, "UTF-8", "RSA");
+        } catch (AlipayApiException e) {
+            e.printStackTrace();
+        }
+        if(signVerified){//验证成功
             //判断订单号是哪个项目
             AliPayOuterConfig config = null;
             for(AliPayOuterConfig temp : configList){
-               if(out_trade_no.startsWith(temp.getNAME())){
-                   config = temp;
-                   break;
-               }
+                if(out_trade_no.startsWith(temp.getNAME())){
+                    config = temp;
+                    break;
+                }
             }
             if(config == null){
                 AlipayCore.logResult("订单成功且未处理:"+out_trade_no);
@@ -187,6 +195,3 @@ public class AliPayNotifyServlet extends HttpServlet {
         return jsonStr;
     }
 }
-
-
-

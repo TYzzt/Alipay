@@ -1,7 +1,7 @@
-package com.alipay.util.configUtil;
+package com.alipayo.util.configUtil;
 
-import com.alipay.config.AlipayConfig;
-import com.alipay.util.AlipayCore;
+import com.alipayo.config.AlipayConfig;
+import com.alipayo.util.AlipayCore;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;

@@ -1,6 +1,6 @@
-package com.alipay.servlet;
+package com.alipayo.servlet;
 
-import com.alipay.util.AlipayNotify;
+import com.alipayo.util.AlipayNotify;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

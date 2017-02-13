@@ -1,6 +1,6 @@
-package com.alipay.util.configUtil;
+package com.alipayo.util.configUtil;
 
-import com.alipay.config.AlipayConfig;
+import com.alipayo.config.AlipayConfig;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -38,7 +38,7 @@ public class DES {
      * Creation date: 2007-7-31 - 下午12:06:24
      */
     public final static String decrypt(String data) throws Exception {
-        return new String(decrypt(hex2byte(data.getBytes()),
+        return new String(decrypt(hex2byte(data.getBytes("UTF-8")),
                 AlipayConfig.PASSWORD_CRYPT_KEY.getBytes()));
     }
     /**
@@ -49,7 +49,7 @@ public class DES {
      * Creation date: 2007-7-31 - 下午12:07:54
      */
     public final static String encrypt(String data) throws Exception  {
-        return byte2hex(encrypt(data.getBytes(), AlipayConfig.PASSWORD_CRYPT_KEY
+        return byte2hex(encrypt(data.getBytes("UTF-8"), AlipayConfig.PASSWORD_CRYPT_KEY
                 .getBytes()));
     }
 
@@ -135,7 +135,7 @@ public class DES {
      */
     public final static String jiami(String data,String mixKey) throws Exception{
         String key = praseKey(mixKey);
-        return byte2hex(encrypt(data.getBytes(), key
+        return byte2hex(encrypt(data.getBytes("UTF-8"), key
                 .getBytes()));
     }
     /**
@@ -147,7 +147,7 @@ public class DES {
      */
     public final static String jiemi(String data,String mixKey) throws Exception{
         String key = praseKey(mixKey);
-        return new String(decrypt(hex2byte(data.getBytes()),
+        return new String(decrypt(hex2byte(data.getBytes("UTF-8")),
                 key.getBytes()),"UTF-8");
     }
 
@@ -238,8 +238,8 @@ public class DES {
         return key.toString();
     }
 
-    public static void main(String[] args) throws Exception {
+/*    public static void main(String[] args) throws Exception {
         System.out.println(DES.jiemi("C571573119722729324251CF5F45FE1D012A435E64C01F7D63058F0D226CDC73A785D75365CCD98F79B7724DEA315A55", "7rsl1wnBrX7sPFjGAmYgJAMaRUsYcfSgpLZwCn7heXcUVk2tsMZ55JJ6DVuKUrtN"));
-    }
+    }*/
 
 }  

@@ -1,9 +1,9 @@
-package com.alipay.servlet;
+package com.alipayo.servlet;
 
-import com.alipay.config.AlipayConfig;
-import com.alipay.util.AlipaySubmit;
-import com.alipay.util.configUtil.AliPayOuterConfig;
-import com.alipay.util.configUtil.XMLReader;
+import com.alipayo.config.AlipayConfig;
+import com.alipayo.util.AlipaySubmit;
+import com.alipayo.util.configUtil.AliPayOuterConfig;
+import com.alipayo.util.configUtil.XMLReader;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

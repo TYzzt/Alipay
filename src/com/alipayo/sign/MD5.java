@@ -1,4 +1,4 @@
-package com.alipay.sign;
+package com.alipayo.sign;
 
 import org.apache.commons.codec.digest.DigestUtils;
 

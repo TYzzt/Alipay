@@ -1,5 +1,5 @@
 
-package com.alipay.util;
+package com.alipayo.util;
 
 import java.util.Date;
 import java.util.Random;

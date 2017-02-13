@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>Servlet1</servlet-name>
-        <servlet-class>com.alipay.servlet.AliPayNotifyServlet</servlet-class>
+        <servlet-class>com.alipayo.servlet.AliPayNotifyServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Servlet1</servlet-name>
@@ -15,7 +15,7 @@
 
     <servlet>
         <servlet-name>Servlet2</servlet-name>
-        <servlet-class>com.alipay.servlet.AliPayRefundServlet</servlet-class>
+        <servlet-class>com.alipayo.servlet.AliPayRefundServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Servlet2</servlet-name>
@@ -24,7 +24,7 @@
 
     <servlet>
         <servlet-name>Servlet3</servlet-name>
-        <servlet-class>com.alipay.servlet.AliPayReturnServlet</servlet-class>
+        <servlet-class>com.alipayo.servlet.AliPayReturnServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Servlet3</servlet-name>
@@ -33,11 +33,32 @@
 
     <servlet>
         <servlet-name>Servlet4</servlet-name>
-        <servlet-class>com.alipay.servlet.AliPaySubmitServlet</servlet-class>
+        <servlet-class>com.alipayo.servlet.AliPaySubmitServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Servlet4</servlet-name>
         <url-pattern>/aliPaySubmit</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>Servlet5</servlet-name>
+        <servlet-class>com.alipayo.servlet.AliPayWapSubmitServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Servlet5</servlet-name>
+        <url-pattern>/aliPayWapSubmit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Servlet6</servlet-name>
+        <servlet-class>com.alipayo.servlet.AliPayWapNotifyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Servlet6</servlet-name>
+        <url-pattern>/aliPayWapNotify</url-pattern>
+    </servlet-mapping>
+
+
 
     </web-app>
