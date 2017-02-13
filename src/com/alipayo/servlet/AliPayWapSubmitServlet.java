@@ -69,10 +69,10 @@ public class AliPayWapSubmitServlet extends HttpServlet {
         alipayRequest.setReturnUrl(return_url);
         alipayRequest.setNotifyUrl(notify_url);
         alipayRequest.setBizContent("{" +
-                "    \"out_trade_no\":"+out_trade_no+"," +
-                "    \"total_amount\":"+total_fee+"," +
-                "    \"subject\":"+subject+"," +
-                "    \"seller_id\":"+AlipayConfig.partner+"," +
+                "    \"out_trade_no\":\""+out_trade_no+"\"," +
+                "    \"total_amount\":\""+total_fee+"\"," +
+                "    \"subject\":\""+subject+"\"," +
+                "    \"seller_id\":\""+AlipayConfig.partner+"\"," +
                 "    \"product_code\":\"QUICK_WAP_PAY\"" +
                 "  }");//填充业务参数
 
