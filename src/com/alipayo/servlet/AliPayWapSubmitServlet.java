@@ -30,9 +30,9 @@ public class AliPayWapSubmitServlet extends HttpServlet {
     List<AliPayOuterConfig> configList = XMLReader.loadconfiglist();
 
     //服务器异步通知页面路径
-    String notify_url = configList.get(0).getALIPAY_BASIC_URL()+ AlipayConfig.wap_notify_url;
+    private String notify_url = configList.get(0).getALIPAY_BASIC_URL()+ AlipayConfig.wap_notify_url;
 
-    String return_url;
+    private String return_url;
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
