@@ -58,6 +58,14 @@
         <servlet-name>Servlet6</servlet-name>
         <url-pattern>/aliPayWapNotify</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Servlet7</servlet-name>
+        <servlet-class>com.alipayo.servlet.AliPayRefundQueryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Servlet7</servlet-name>
+        <url-pattern>/aliPayRefundQuery</url-pattern>
+    </servlet-mapping>
 
 
 
