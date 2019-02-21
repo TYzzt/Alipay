@@ -30,7 +30,7 @@ public class AlipayConfig {
 	public static String appId = "1";
 
 	// 收款支付宝账号，一般情况下收款账号就是签约账号
-	public static String seller_email = "htyun@greatchn.com.cn";
+	public static String seller_email = "";
 	// 商户的私钥 MD5
 	public static String key = "1";
 	// 商户的私钥 RSA2
